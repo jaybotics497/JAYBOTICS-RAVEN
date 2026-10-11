@@ -66,6 +66,7 @@ endif()
 # its bundled GGML tree, producing duplicate ggml/ggml-base targets. Build the
 # pinned Whisper library source directory directly against llama's ggml target.
 set(WHISPER_VERSION_BASE "1.9.5")
+set(WHISPER_VERSION "1.9.5-dev")
 set(WHISPER_VERSION_MAJOR "1")
 set(WHISPER_EXTRA_FLAGS "")
 set(PARAKEET_EXTRA_FLAGS "")
@@ -79,6 +80,12 @@ add_subdirectory(
     "${RAVEN_WHISPER_DIR}/src"
     "${CMAKE_BINARY_DIR}/whisper-src"
     EXCLUDE_FROM_ALL
+)
+
+target_compile_definitions(
+    whisper
+    PRIVATE
+        WHISPER_VERSION="${WHISPER_VERSION}"
 )
 
 add_library(raven_whisper SHARED raven_whisper_jni.cpp)
