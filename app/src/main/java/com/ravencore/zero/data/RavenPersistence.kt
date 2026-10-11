@@ -5,5 +5,5 @@ class RavenPersistence(context:Context){
  fun put(key:String,value:String){require(key.isNotBlank());p.edit().putString(key,value).apply()}
  fun get(key:String):String?=p.getString(key,null)
  fun remove(key:String){p.edit().remove(key).apply()}
- fun snapshot():Map<String,*>=p.all.toMap()
+ fun snapshot(): Map<String, *> = p.all.toMap()
 }

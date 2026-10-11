@@ -176,7 +176,6 @@ Java_com_ravencore_zero_ai_NativeQwenBackend_nativeLoad(
     release_model_locked();
 
     llama_model_params params = llama_model_default_params();
-    params.use_mmap = true;
 
     g_model = llama_model_load_from_file(
         model_path.c_str(),
