@@ -1,0 +1,13 @@
+RAVEN NATIVE ENGINE AUTHORITY
+
+llama.cpp
+commit=23b0202a189c44a54625aadcb37a946dd1d6278d
+source=/data/data/com.termux/files/home/JAYBOTICS-ENGINES/llama.cpp
+
+whisper.cpp
+commit=d1be6fde11ac6e0407606b4e42fe72d34add8037
+source=/data/data/com.termux/files/home/JAYBOTICS-ENGINES/whisper.cpp
+
+integration_policy=single llama.cpp GGML authority
+compatibility_gate=RAVEN_SHARED_GGML_COMPAT_PASS
+architecture=arm64-v8a
