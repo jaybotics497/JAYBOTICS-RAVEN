@@ -1,12 +1,38 @@
 name: Android CI
+
 on: [push, pull_request]
+
 jobs:
- build:
-  runs-on: ubuntu-latest
-  steps:
-   - uses: actions/checkout@v4
-   - uses: actions/setup-java@v4
-     with: {distribution: temurin, java-version: '17'}
-   - uses: gradle/actions/setup-gradle@v4
-     with: {gradle-version: '8.11.1'}
-   - run: gradle :app:testDebugUnitTest :app:assembleDebug
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.11.1'
+
+      - name: Install pinned Android NDK
+        run: |
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" \
+            "ndk;27.0.12077973"
+
+      - name: Verify Raven authority
+        run: python tools/verify_authority.py
+
+      - name: Verify admitted engine revisions
+        run: |
+          grep -Fx \
+            "23b0202a189c44a54625aadcb37a946dd1d6278d  llama.cpp" \
+            native/ENGINE-REVISIONS.txt
+          grep -Fx \
+            "d1be6fde11ac6e0407606b4e42fe72d34add8037  whisper.cpp" \
+            native/ENGINE-REVISIONS.txt
+
+      - name: Test and assemble Raven
+        run: gradle :app:testDebugUnitTest :app:assembleDebug

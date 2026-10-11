@@ -1,0 +1,2 @@
+23b0202a189c44a54625aadcb37a946dd1d6278d  llama.cpp
+d1be6fde11ac6e0407606b4e42fe72d34add8037  whisper.cpp
