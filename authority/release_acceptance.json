@@ -1,0 +1,81 @@
+{
+  "gate": "RAVEN_VISUAL_RELEASE_ACCEPTANCE",
+  "all_required": true,
+  "checks": [
+    {
+      "id": "V01",
+      "requirement": "head/beak/eye fully visible landscape",
+      "severity": "BLOCKER"
+    },
+    {
+      "id": "V02",
+      "requirement": "head/beak/eye fully visible portrait",
+      "severity": "BLOCKER"
+    },
+    {
+      "id": "V03",
+      "requirement": "no top-edge clipping",
+      "severity": "BLOCKER"
+    },
+    {
+      "id": "V04",
+      "requirement": "side clearance >= 8%",
+      "severity": "BLOCKER"
+    },
+    {
+      "id": "V05",
+      "requirement": "bottom clearance >= 8%",
+      "severity": "BLOCKER"
+    },
+    {
+      "id": "V06",
+      "requirement": "head clearance >= 12%",
+      "severity": "BLOCKER"
+    },
+    {
+      "id": "V07",
+      "requirement": "normal animation <= 75% viewport height",
+      "severity": "BLOCKER"
+    },
+    {
+      "id": "V08",
+      "requirement": "body/wing readable through animation",
+      "severity": "BLOCKER"
+    },
+    {
+      "id": "V09",
+      "requirement": "environment composition retained",
+      "severity": "BLOCKER"
+    },
+    {
+      "id": "V10",
+      "requirement": "HUD readable and camera-independent",
+      "severity": "BLOCKER"
+    },
+    {
+      "id": "V11",
+      "requirement": "rotation has no cumulative drift/scale",
+      "severity": "BLOCKER"
+    },
+    {
+      "id": "V12",
+      "requirement": "Raven world position authoritative",
+      "severity": "BLOCKER"
+    },
+    {
+      "id": "V13",
+      "requirement": "portrait follow camera authoritative",
+      "severity": "BLOCKER"
+    },
+    {
+      "id": "V14",
+      "requirement": "frame stability verified on device",
+      "severity": "BLOCKER"
+    },
+    {
+      "id": "V15",
+      "requirement": "state transitions verified on device",
+      "severity": "BLOCKER"
+    }
+  ]
+}

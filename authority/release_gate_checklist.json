@@ -1,0 +1,27 @@
+{
+  "release_status": "NOT_YET_VERIFIED",
+  "mandatory_gates": [
+    "SOURCE_AUTHORITY",
+    "BASELINE_BUILD",
+    "GATE_ZERO_RAVEN_VISIBILITY",
+    "LIVING_WORLD",
+    "INDEPENDENT_RAVEN_RIG",
+    "REAL_WORLD_RENDERER",
+    "RAVENPOSE_WORLD_POSITION",
+    "LANDSCAPE_CAMERA",
+    "PORTRAIT_CAMERA",
+    "ROTATION",
+    "HUD_CORE_STATE",
+    "ANIMATION",
+    "INTERACTION",
+    "AI_QWEN_OFFLINE",
+    "VOICE",
+    "MEMORY_PERSISTENCE",
+    "LIFECYCLE",
+    "PERFORMANCE",
+    "RELEASE_BUILD",
+    "SIGNING_PACKAGE_HASH",
+    "DEVICE_VERIFICATION"
+  ],
+  "rule": "No 100% declaration unless every mandatory gate is PASS and no release blocker remains."
+}

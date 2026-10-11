@@ -1,0 +1,19 @@
+JAYBOTICS RAVEN SOURCE AUTHORITY
+
+Package:
+com.ravencore.zero
+
+Seed artifact:
+JAYBOTICS-RAVEN-FRESH-SOURCE-v6.zip
+
+Seed artifact SHA-256:
+81472f6ef398328013e0a9a1fdd8cefd6047b6a676ceda0381e98ebc94285316
+
+Authority role:
+Verified reconstructed Jaybotics Raven application source baseline.
+
+The original seed ZIP is preserved separately and must not be
+silently replaced or rewritten.
+
+Production Qwen JNI development continues from the separately
+verified native integration checkpoint.

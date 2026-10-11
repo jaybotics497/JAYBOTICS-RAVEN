@@ -1,0 +1,327 @@
+{
+  "format": "raven.machine_design_authority",
+  "version": 1,
+  "product": {
+    "name": "Raven",
+    "package": "com.ravencore.zero",
+    "implementation_lineage": "JAYBOTICS",
+    "status": "DESIGN_AUTHORITY"
+  },
+  "provenance": {
+    "source_pack": "RAVEN-COMPLETE-CANONICAL-DESIGN-PACK-2026-10-10.zip",
+    "translation_scope": "canonical design/specification only"
+  },
+  "rules": {
+    "MUST": [
+      "use fresh visual/UI/animation implementation",
+      "preserve working non-visual capability behind explicit adapters",
+      "use independent Raven visual geometry/rig",
+      "use Raven-free Living World environment master",
+      "keep HUD in screen space",
+      "preserve aspect ratio",
+      "rebuild camera transform from canonical source geometry on every viewport/orientation change",
+      "verify on-device before release"
+    ],
+    "MUST_NOT": [
+      "reuse legacy Raven visual/UI/renderer/animation code",
+      "use superseded alternate themes",
+      "treat a flat baked Raven scene as an articulated rig",
+      "stretch canonical visual geometry",
+      "accumulate rotation transforms",
+      "declare reference-dashboard depictions implemented without source/runtime evidence",
+      "use generic silhouette/placeholder fallback as release Raven"
+    ]
+  },
+  "visual_canon": {
+    "base": [
+      "pure black",
+      "near-black"
+    ],
+    "focal_element": "Raven",
+    "palette": {
+      "primary": [
+        "neon cyan",
+        "electric blue",
+        "teal",
+        "emerald",
+        "white"
+      ],
+      "restrained": [
+        "violet"
+      ],
+      "warning_only": [
+        "orange"
+      ]
+    },
+    "raven": {
+      "style": "refined adult anatomically convincing",
+      "required_geometry": [
+        "layered feathers",
+        "beak",
+        "claws",
+        "wings",
+        "head",
+        "eye"
+      ],
+      "primary_state_indicator": "eye",
+      "physical_contact_required": true
+    },
+    "living_world": [
+      "waterfall",
+      "stream/water",
+      "rock",
+      "grass/vegetation",
+      "mountains",
+      "forest",
+      "sky",
+      "subtle ambient elements"
+    ],
+    "environment_response": [
+      "day",
+      "night"
+    ],
+    "quality_invariants": [
+      "no clipping",
+      "no stretching",
+      "no floating",
+      "no malformed geometry",
+      "purposeful effects only"
+    ]
+  },
+  "render_pipeline": [
+    {
+      "order": 1,
+      "id": "SKY_LIGHT",
+      "space": "WORLD",
+      "content": [
+        "sun",
+        "moon",
+        "clouds",
+        "stars",
+        "atmospheric light"
+      ]
+    },
+    {
+      "order": 2,
+      "id": "WORLD_BACK",
+      "space": "WORLD",
+      "content": [
+        "stream",
+        "rock",
+        "grass",
+        "perch",
+        "background environment"
+      ]
+    },
+    {
+      "order": 3,
+      "id": "RAVEN",
+      "space": "WORLD",
+      "content": [
+        "independent Raven geometry/rig",
+        "RavenPose"
+      ]
+    },
+    {
+      "order": 4,
+      "id": "WORLD_FRONT",
+      "space": "WORLD",
+      "content": [
+        "foreground grass",
+        "contact shadow",
+        "occlusion"
+      ]
+    },
+    {
+      "order": 5,
+      "id": "FX_STATE",
+      "space": "WORLD_OR_OVERLAY",
+      "content": [
+        "eye state",
+        "lighting",
+        "rare effects",
+        "interaction feedback"
+      ]
+    },
+    {
+      "order": 6,
+      "id": "HUD",
+      "space": "SCREEN",
+      "content": [
+        "status",
+        "controls",
+        "telemetry"
+      ],
+      "camera_affected": false
+    }
+  ],
+  "camera": {
+    "id": "GATE21-VISUAL03_SCENE_CAMERA_V2",
+    "locked": true,
+    "canonical_reference": {
+      "width_px": 1536,
+      "height_px": 1024,
+      "aspect": "3:2",
+      "sha256": "c053fc31a6cec9c0e1e40476bf0de9b1c62ea702219afd8df23b07fb283bd204"
+    },
+    "raven_source_bounds": {
+      "left": 799.0,
+      "top": 123.0,
+      "right": 1229.0,
+      "bottom": 717.0,
+      "anchor_x": 0.6796875,
+      "anchor_y": 0.419921875
+    },
+    "landscape": {
+      "idle_height_fraction": {
+        "min": 0.5,
+        "nominal": 0.53,
+        "max": 0.55
+      },
+      "viewport_anchor": {
+        "x": 0.68,
+        "y": 0.45
+      }
+    },
+    "portrait": {
+      "idle_height_fraction": {
+        "min": 0.58,
+        "nominal": 0.6,
+        "max": 0.63
+      },
+      "viewport_anchor": {
+        "x": 0.55,
+        "y": 0.43
+      },
+      "mode": "RAVEN_FOLLOW"
+    },
+    "clearance": {
+      "head_min_fraction": 0.12,
+      "horizontal_min_fraction": 0.08,
+      "horizontal_target_max_fraction": 0.1,
+      "bottom_min_fraction": 0.08,
+      "normal_animated_envelope_max_fraction": 0.75
+    },
+    "algorithm": {
+      "scale": "viewportHeight * idleHeightFraction / (sourceBottom-sourceTop)",
+      "left": "viewportWidth*viewportAnchorX - sceneWidth*sourceAnchorX*scale",
+      "top": "viewportHeight*viewportAnchorY - sceneHeight*sourceAnchorY*scale",
+      "deterministic_rotation": true,
+      "accumulated_transform": false
+    }
+  },
+  "state_system": {
+    "pipeline": [
+      "CoreAiState",
+      "RavenStateMachine",
+      "AnimationScheduler",
+      "RavenRig",
+      "Renderer"
+    ],
+    "states": [
+      "IDLE",
+      "ALERT",
+      "LISTENING",
+      "THINKING",
+      "SPEAKING",
+      "GENERATING",
+      "ACTIVE",
+      "RESTING",
+      "SLEEPING",
+      "WAKING",
+      "FEEDING",
+      "INSPECTING",
+      "WARNING",
+      "ERROR",
+      "OFFLINE",
+      "SUCCESS"
+    ],
+    "priority_channels": [
+      "IDLE",
+      "GAZE",
+      "INTERACTION",
+      "STATE",
+      "CRITICAL"
+    ],
+    "runtime_mappings": {
+      "STT_STARTED": "LISTENING",
+      "INFERENCE_STARTED": "THINKING",
+      "GENERATION_STARTED": "GENERATING",
+      "TTS_STARTED": "SPEAKING",
+      "FAULT": "ERROR",
+      "SERVICE_UNAVAILABLE": "OFFLINE",
+      "TASK_COMPLETED": "SUCCESS"
+    },
+    "motions": [
+      "blink",
+      "head turn",
+      "head tilt",
+      "preen",
+      "wing stretch",
+      "weight shift",
+      "claw adjust",
+      "hop/land",
+      "peck/inspect",
+      "sharpen",
+      "feed",
+      "speaking motion"
+    ],
+    "motion_character": [
+      "smooth",
+      "fluid",
+      "purposeful"
+    ]
+  },
+  "asset_contracts": {
+    "living_world_master": {
+      "required": true,
+      "raven_baked_in": false,
+      "role": "environment/world master"
+    },
+    "raven_visual_master": {
+      "required": true,
+      "independent": true,
+      "transparent_background": true,
+      "role": "Raven renderer/rig source"
+    },
+    "hud": {
+      "required": true,
+      "space": "SCREEN"
+    },
+    "note": "The input pack describes these production assets but does not itself prove that final production-ready masters are present."
+  },
+  "validation": {
+    "release_blocking": true,
+    "checks": [
+      "head/beak/eye fully visible landscape",
+      "head/beak/eye fully visible portrait",
+      "no top-edge clipping",
+      "side clearance >= 8%",
+      "bottom clearance >= 8%",
+      "head clearance >= 12%",
+      "normal animation <= 75% viewport height",
+      "body/wing readable through animation",
+      "environment composition retained",
+      "HUD readable and camera-independent",
+      "rotation has no cumulative drift/scale",
+      "Raven world position authoritative",
+      "portrait follow camera authoritative",
+      "frame stability verified on device",
+      "state transitions verified on device"
+    ]
+  },
+  "evidence_classification": {
+    "canonical_visuals": "VISUAL_AUTHORITY",
+    "scene_camera_blueprint": "TECHNICAL_VISUAL_AUTHORITY",
+    "source_snapshot": "IMPLEMENTATION_EVIDENCE_NOT_LINEAGE_PERMISSION",
+    "dashboards": "REFERENCE_ONLY_NOT_IMPLEMENTATION_PROOF"
+  },
+  "excluded": [
+    "Raven AI Sci-Fi Skin Pack",
+    "historical Raven/Corvus implementation lineage",
+    "legacy visual/UI/renderer/animation code",
+    "generic placeholders",
+    "silhouette fallbacks",
+    "conflicting visual specifications"
+  ]
+}

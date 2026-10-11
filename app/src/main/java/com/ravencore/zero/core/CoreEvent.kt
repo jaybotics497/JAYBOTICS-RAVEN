@@ -1,0 +1,2 @@
+package com.ravencore.zero.core
+sealed interface CoreEvent { data object SttStarted:CoreEvent; data object SttStopped:CoreEvent; data object InferenceStarted:CoreEvent; data object GenerationStarted:CoreEvent; data object GenerationCompleted:CoreEvent; data object GenerationCancelled:CoreEvent; data object TtsStarted:CoreEvent; data object TtsCompleted:CoreEvent; data object TtsCancelled:CoreEvent; data object TaskCompleted:CoreEvent; data object ServiceUnavailable:CoreEvent; data object RecoveryRequested:CoreEvent; data class Fault(val message:String):CoreEvent }

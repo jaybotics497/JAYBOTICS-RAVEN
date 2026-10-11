@@ -1,0 +1,18 @@
+
+# Raven local AI models are runtime assets, not Git source.
+*.gguf
+*.bin
+
+# Native/build outputs
+.gradle/
+build/
+**/build/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.aab
+
+# Local evidence and machine-specific material
+local.properties
+*.keystore
+*.jks

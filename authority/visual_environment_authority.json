@@ -1,0 +1,232 @@
+{
+  "schema_version": "2.0",
+  "authority_id": "RAVEN-EXTENDED-LANDSCAPE-ENVIRONMENT-MASTER",
+  "production_package": "com.ravencore.zero",
+  "reference_image": {
+    "path": "visual/RAVEN-EXTENDED-LANDSCAPE-ENVIRONMENT-MASTER-REFERENCE.png",
+    "pixel_size": {
+      "width": 1536,
+      "height": 656
+    },
+    "aspect_ratio": 2.341463,
+    "declared_design_ratio": "~2.3:1",
+    "usage": [
+      "composition",
+      "camera framing",
+      "world zoning",
+      "layer separation",
+      "lighting/color continuity"
+    ],
+    "runtime_pixel_coordinates_are_authoritative": false
+  },
+  "critical_separation_rule": {
+    "environment_master_must_be_raven_free": true,
+    "raven_rig_must_be_independent": true,
+    "raven_visible_in_reference_is_compositional_only": true
+  },
+  "composition": {
+    "lighting_arc": {
+      "left": "warm sunset / golden hour",
+      "center": "twilight transition",
+      "right": "deep blue moonlit night",
+      "continuity": "single coherent habitat with gradual day-to-night transition"
+    },
+    "major_regions": [
+      {
+        "id": "left_exploration_zone",
+        "normalized_x": [
+          0.0,
+          0.29
+        ],
+        "intent": [
+          "field",
+          "trees",
+          "rocks",
+          "walk/hop",
+          "feeding",
+          "inspection",
+          "interaction"
+        ]
+      },
+      {
+        "id": "central_landmark",
+        "normalized_x": [
+          0.29,
+          0.62
+        ],
+        "intent": [
+          "river",
+          "waterfall",
+          "midground landmark",
+          "environment animation"
+        ]
+      },
+      {
+        "id": "raven_activity_zone",
+        "normalized_x": [
+          0.62,
+          0.82
+        ],
+        "intent": [
+          "home perch",
+          "ground",
+          "takeoff",
+          "landing",
+          "animation envelope"
+        ]
+      },
+      {
+        "id": "right_forest_extension",
+        "normalized_x": [
+          0.82,
+          1.0
+        ],
+        "intent": [
+          "deeper night forest",
+          "additional perches",
+          "occlusion"
+        ]
+      }
+    ],
+    "logical_world_zones_left_to_right": [
+      "LEFT_LOOKOUT",
+      "FIELD_CENTER",
+      "WATER_EDGE",
+      "WATERFALL",
+      "TAKEOFF_POINT",
+      "HOME_PERCH",
+      "RIGHT_LOOKOUT"
+    ]
+  },
+  "camera_authority": {
+    "landscape": {
+      "mode": "habitat",
+      "target_raven_height_fraction": {
+        "min": 0.5,
+        "nominal": 0.53,
+        "max": 0.55
+      },
+      "intent": "show broad habitat while keeping Raven readable"
+    },
+    "portrait": {
+      "mode": "raven_follow",
+      "target_raven_height_fraction": {
+        "min": 0.58,
+        "nominal": 0.6,
+        "max": 0.63
+      },
+      "intent": "Raven-focused crop with headroom and animation clearance"
+    },
+    "normal_animation_envelope_max_fraction": 0.75,
+    "clearance": {
+      "head_min_fraction": 0.12,
+      "horizontal_target_fraction_each_side": [
+        0.08,
+        0.1
+      ],
+      "bottom_min_fraction": 0.08
+    },
+    "rotation": {
+      "reconstruct_from_authoritative_state": true,
+      "accumulate_transforms": false,
+      "requirements": [
+        "no camera drift",
+        "no scale explosion",
+        "no stale transform",
+        "no Raven disappearance",
+        "no world discontinuity"
+      ]
+    }
+  },
+  "render_layers_back_to_front": [
+    {
+      "order": 1,
+      "id": "SKY_CELESTIAL",
+      "contents": [
+        "stars",
+        "sun",
+        "moon",
+        "clouds"
+      ]
+    },
+    {
+      "order": 2,
+      "id": "DISTANT_MOUNTAINS",
+      "contents": [
+        "mountains",
+        "atmosphere",
+        "mist"
+      ]
+    },
+    {
+      "order": 3,
+      "id": "MIDGROUND",
+      "contents": [
+        "waterfall",
+        "river",
+        "forest"
+      ]
+    },
+    {
+      "order": 4,
+      "id": "GROUND_TERRAIN",
+      "contents": [
+        "field",
+        "river banks",
+        "rocks"
+      ]
+    },
+    {
+      "order": 5,
+      "id": "RAVEN_RIG",
+      "contents": [
+        "independent Raven",
+        "animation",
+        "shadow"
+      ],
+      "independent_asset": true
+    },
+    {
+      "order": 6,
+      "id": "FOREGROUND_VEGETATION",
+      "contents": [
+        "branches",
+        "plants",
+        "occlusion"
+      ]
+    },
+    {
+      "order": 7,
+      "id": "FX_STATE",
+      "contents": [
+        "admitted environmental/state effects"
+      ]
+    },
+    {
+      "order": 8,
+      "id": "HUD",
+      "contents": [
+        "screen-space UI"
+      ],
+      "camera_space": "screen"
+    }
+  ],
+  "world_behavior": {
+    "waterfall": "animated landmark",
+    "river": "continuous world element",
+    "foreground_occlusion": "intentional and depth-aware",
+    "perches": "world anchors, not screen anchors",
+    "raven_world_position": "authoritative world coordinates consumed by renderer/camera",
+    "side_fill_allowed_in_final": false
+  },
+  "acceptance": [
+    "Living World master contains no baked Raven",
+    "Raven rig is independently replaceable/renderable",
+    "landscape camera shows coherent habitat without exposed side-fill",
+    "portrait camera follows Raven and meets locked sizing/clearance metrics",
+    "world zones remain spatially coherent across orientation changes",
+    "foreground vegetation may occlude Raven intentionally but never due to erroneous z-order",
+    "HUD remains screen-space",
+    "rotation rebuilds camera deterministically from authoritative state"
+  ]
+}

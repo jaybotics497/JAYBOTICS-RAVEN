@@ -1,0 +1,22 @@
+# Release gate status
+- SOURCE_AUTHORITY: FRESH_RECONSTRUCTION_CREATED, GitHub provenance pending
+- BASELINE_BUILD: BLOCKED_CURRENT_CONTAINER_ANDROID_SDK_ABSENT
+- GATE_ZERO_RAVEN_VISIBILITY: IMPLEMENTED_IN_PRODUCTION_VIEW, runtime proof pending
+- LIVING_WORLD: IMPLEMENTED_FRESH_PROCEDURAL_WORLD, device visual acceptance pending
+- INDEPENDENT_RAVEN_RIG: IMPLEMENTED_FRESH_INDEPENDENT_GEOMETRY, canonical visual acceptance pending
+- REAL_WORLD_RENDERER: IMPLEMENTED
+- RAVENPOSE_WORLD_POSITION: IMPLEMENTED
+- LANDSCAPE_CAMERA: IMPLEMENTED + contract test authored
+- PORTRAIT_CAMERA: IMPLEMENTED + contract test authored
+- ROTATION: deterministic reconstruction by pure camera function; runtime proof pending
+- HUD_CORE_STATE: IMPLEMENTED
+- ANIMATION: IMPLEMENTED foundation
+- INTERACTION: IMPLEMENTED tap/listen foundation
+- AI_QWEN_OFFLINE: BLOCKED_NATIVE_BACKEND_NOT_SUPPLIED
+- VOICE: IMPLEMENTED Android STT/TTS; device proof pending
+- MEMORY_PERSISTENCE: IMPLEMENTED SharedPreferences foundation; compatibility proof pending
+- LIFECYCLE: IMPLEMENTED observer/speech teardown; runtime proof pending
+- PERFORMANCE: runtime profiling pending
+- RELEASE_BUILD: BLOCKED_CURRENT_CONTAINER_ANDROID_SDK_ABSENT
+- SIGNING_PACKAGE_HASH: pending release build
+- DEVICE_VERIFICATION: pending Samsung A17
