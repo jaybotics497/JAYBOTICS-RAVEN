@@ -2,6 +2,7 @@ plugins { id("com.android.application"); kotlin("android") }
 android {
     namespace = "com.ravencore.zero"
     compileSdk = 36
+    ndkVersion = "27.0.12077973"
     defaultConfig {
         applicationId = "com.ravencore.zero"
         minSdk = 26
